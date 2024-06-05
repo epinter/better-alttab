@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "better-alttab",
+  "version-string": "0.5",
+  "description": "Better AltTab",
+  "homepage": "https://github.com/epinter/better-alttab",
+  "license": "LGPL-3.0-or-later",
+  "features": {
+    "plugin": {
+      "description": "SKSE plugin",
+      "dependencies": [
+        "commonlibsse-ng",
+        "detours",
+        "simpleini"
+      ]
+    }
+  },
+  "default-features": [
+    "plugin"
+  ],
+  "builtin-baseline": "a4275b7eee79fb24ec2e135481ef5fce8b41c339"
+}
