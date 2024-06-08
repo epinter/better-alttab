@@ -10,17 +10,19 @@ Licensed under LGPL-3.0 <https://www.gnu.org/licenses/lgpl-3.0.txt>.
 namespace betteralttab {
     class WindowProc {
     private:
-        static constexpr int OFFSET_FUNC_SE = 35635;
-        static constexpr int OFFSET_FUNC_AE = 36649;
-
-        bool started = false;
-        static LRESULT __fastcall windowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-        static inline REL::Relocation<decltype(windowProc)> original;
+        bool loading = true;
+        HWND hwnd = 0;
+        static LRESULT CALLBACK windowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+        static inline LONG_PTR original;
 
     public:
+        bool installToggleCursorHook();
+        static void __fastcall toggleCursor(uintptr_t param1, bool state);
+        using originalToggleCursorFn = decltype(&toggleCursor);
+        static inline originalToggleCursorFn originalToggleCursor;
+
         [[nodiscard]] static WindowProc& getInstance();
-        static bool installHook();
-        void hideCursor();
-        void showCursor(bool isBackground);
+        bool installWndProcHook(HWND h);
+        HWND getHwnd();
     };
 }  // namespace betteralttab

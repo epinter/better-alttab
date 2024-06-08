@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 
 project(
     BetterAltTab
-        VERSION 1.0.0
+        VERSION 1.0.1
         LANGUAGES CXX)
 set(PROJECT_LICENSE "LGPLv3")
 set(PROJECT_FRIENDLY_NAME ${PROJECT_NAME})

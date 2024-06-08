@@ -15,6 +15,7 @@ namespace betteralttab {
         }
 
         void onLoad() override;
+        void onDataLoaded() override;
     };
 
-}  // namespace mutebg
+}  // namespace betteralttab

@@ -19,8 +19,22 @@ namespace betteralttab {
             spdlog::set_pattern(PLUGIN_LOGPATTERN_DEBUG);
         }
 
-        if (WindowProc::installHook()) {
-            Xaudio::getInstance().installHook();
+        Xaudio::getInstance().installHook();
+    }
+
+    void GameEventHandler::onDataLoaded() {
+        using namespace RE::BSGraphics;
+
+        RendererWindow *rendererWindow = Renderer::GetSingleton()->GetCurrentRenderWindow();
+        if (rendererWindow != nullptr) {
+            WindowProc::getInstance().installWndProcHook(reinterpret_cast<HWND>(rendererWindow->hWnd));
+
+            if (Renderer::GetSingleton()->data.fullScreen) {
+                logger::info("fullscreen detected, disabling cursor feature");
+                Config::getInstance().setCursorEnabled(false);
+            }
+
+            WindowProc::getInstance().installToggleCursorHook();
         }
     }
 }  // namespace betteralttab
