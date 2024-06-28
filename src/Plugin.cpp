@@ -45,7 +45,7 @@ namespace betteralttab {
         spdlog::set_default_logger(std::move(log));
         spdlog::set_pattern(PLUGIN_LOGPATTERN_DEFAULT);
     }
-}  // namespace mutebg
+}  // namespace betteralttab
 
 using namespace betteralttab;
 
