@@ -39,7 +39,6 @@ namespace betteralttab {
     }
 
     void WindowProc::toggleCursor(uintptr_t param1, bool state) {
-        // logger::debug("toggleCursor param1:{} state:{}", *reinterpret_cast<int32_t *>(param1 + 0x2c), state);
         if (GetForegroundWindow() == WindowProc::getInstance().getHwnd()) {
             state = false;
         } else {
@@ -54,9 +53,6 @@ namespace betteralttab {
         }
 
         REL::RelocationID function = REL::RelocationID(80429, 82541);
-        auto &trampoline = SKSE::GetTrampoline();
-        trampoline.create(64);
-
         originalToggleCursor = reinterpret_cast<originalToggleCursorFn>(function.address());
         if (DetourTransactionBegin() == NO_ERROR && DetourUpdateThread(GetCurrentThread()) == NO_ERROR &&
             DetourAttach(&reinterpret_cast<PVOID &>(originalToggleCursor), toggleCursor) == NO_ERROR &&
