@@ -29,7 +29,7 @@ namespace betteralttab {
         if (rendererWindow != nullptr) {
             WindowProc::getInstance().installWndProcHook(reinterpret_cast<HWND>(rendererWindow->hWnd));
 
-            if (Renderer::GetSingleton()->data.fullScreen) {
+            if (Renderer::GetSingleton()->GetRuntimeData().fullScreen) {
                 logger::info("fullscreen detected, disabling cursor feature");
                 Config::getInstance().setCursorEnabled(false);
             }

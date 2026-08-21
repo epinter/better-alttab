@@ -3,6 +3,7 @@ using namespace SKSE::log;
 using namespace SKSE::stl;
 
 #include "GameEventHandler.h"
+#include "Plugin.h"
 
 namespace betteralttab {
     std::optional<std::filesystem::path> getLogDirectory() {
@@ -49,7 +50,7 @@ namespace betteralttab {
 
 using namespace betteralttab;
 
-SKSEPluginLoad(const LoadInterface* skse) {
+extern "C" DLLEXPORT bool SKSEPlugin_Load(const LoadInterface* skse) {
     initializeLogging();
     const auto* plugin = PluginDeclaration::GetSingleton();
     auto version = plugin->GetVersion();

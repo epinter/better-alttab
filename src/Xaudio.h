@@ -1,5 +1,9 @@
 #pragma once
+
+#pragma warning(push)
+#pragma warning(disable : 5103)
 #include <dx2010/XAudio2.h>
+#pragma warning(pop)
 
 /*
 Copyright (c) 2024 Emerson Pinter

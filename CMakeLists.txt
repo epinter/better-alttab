@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 
 project(
     BetterAltTab
-        VERSION 1.0.1
+        VERSION 1.0.2
         LANGUAGES CXX)
 set(PROJECT_LICENSE "LGPLv3")
 set(PROJECT_FRIENDLY_NAME ${PROJECT_NAME})
@@ -18,7 +18,13 @@ include(plugintarget)
 include(pluginpackage)
 
 ######## dependencies
-find_library(DETOURS_LIBRARY detours REQUIRED)
+find_library(
+    DETOURS_LIBRARY
+    detours
+    PATHS "${CMAKE_BINARY_DIR}/vcpkg_installed/${VCPKG_TARGET_TRIPLET}/lib"
+    NO_DEFAULT_PATH
+    REQUIRED
+)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${DETOURS_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${DETOURS_LIBRARY})

@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "better-alttab",
-  "version-string": "0.5",
+  "version-string": "1.0.2",
   "description": "Better AltTab",
   "homepage": "https://github.com/epinter/better-alttab",
   "license": "LGPL-3.0-or-later",
@@ -10,6 +10,13 @@
       "description": "SKSE plugin",
       "dependencies": [
         "commonlibsse-ng",
+        {
+          "name": "spdlog",
+          "features": [
+            "fmt",
+            "wchar"
+          ]
+        },
         "detours",
         "simpleini"
       ]
@@ -18,5 +25,10 @@
   "default-features": [
     "plugin"
   ],
-  "builtin-baseline": "a4275b7eee79fb24ec2e135481ef5fce8b41c339"
+  "configuration": {
+    "overlay-ports": [
+        "./cmake/ports"
+    ]
+  },
+  "builtin-baseline": "9e593bb18ea69cc5095e012465dcd675a822ed0d"
 }
